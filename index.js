@@ -6,6 +6,7 @@ const passport = require("passport");
 const path = require("path");
 
 const config = require('./config/db');                      // Export db config file
+const account = require('./routes/account');
 
 const app = express();                                      // Initiate app
 const port = 3000;                                          // Set port
@@ -31,6 +32,7 @@ app.use(
 app.get('/', (req, res) => {                                // Simple response if '/' address will be open
     res.send('Hello!');
 });
+app.use('/account', account);
 
 app.listen(port, () => {                                    // Start listen port
     console.log("Server will be serve on port: " + port)    // Print a massege
