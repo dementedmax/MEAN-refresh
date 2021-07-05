@@ -1,5 +1,5 @@
 const express = require("express");
-const Cors = require("cors");
+const cors = require("cors");
 const bodyParser = require("body-parser");
 const mongoose = require("mongoose");
 const passport = require("passport");
@@ -23,7 +23,9 @@ mongoose.connection.on('error', (err) =>{
 });
 
 app.use(
-    express.static(path.join(__dirname, 'public'))          // Add to 'app' static folder 'public'
+    express.static(path.join(__dirname, 'public')),         // Add to 'app' static folder 'public'
+    cors(),                                                 // Add CORS support 
+    bodyParser.json()                                       // Add bodyParser
 );
 
 app.get('/', (req, res) => {                                // Simple response if '/' address will be open
