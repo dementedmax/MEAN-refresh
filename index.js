@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const passport = require("passport");
 const path = require("path");
 
+
 const config = require('./config/db');                      // Export db config file
 const account = require('./routes/account');
 
@@ -26,8 +27,11 @@ mongoose.connection.on('error', (err) =>{
 app.use(
     express.static(path.join(__dirname, 'public')),         // Add to 'app' static folder 'public'
     cors(),                                                 // Add CORS support 
-    bodyParser.json()                                       // Add bodyParser
+    bodyParser.json(),                                      // Add bodyParser
+    passport.initialize(),                                  // Init 'passport'
+    passport.session()                                      // Set use sessions in 'passport'
 );
+require('./config/passport')(passport);                     // Boot 'passport'
 
 app.get('/', (req, res) => {                                // Simple response if '/' address will be open
     res.send('Hello!');
