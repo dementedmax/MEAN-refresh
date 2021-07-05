@@ -10,7 +10,10 @@ const config = require('./config/db');                      // Export db config 
 const app = express();                                      // Initiate app
 const port = 3000;                                          // Set port
 
-mongoose.connect(config.db);                                // Try connect to db
+mongoose.connect(config.db, {                               // Try connect to db
+    useNewUrlParser: true, 
+    useUnifiedTopology: true
+});
 mongoose.connection.on('connected', () =>{
     console.log("Connect to db: successful");               // Print a message if connection successed
 });
