@@ -1,0 +1,5 @@
+.my-awesome-class{
+    font-size: calc(0.75rem + .3vw)!important;
+    color: purple; 
+    margin-left: 10px;
+}
